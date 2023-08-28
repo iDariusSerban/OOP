@@ -2,10 +2,10 @@ package Ex8;
 
 public class Company {
     private String companyName;
-     private int foundingYear;
-     private  Department[] departments;
+    private int foundingYear;
+    private Department[] departments;
 
-     private int numberOfDep = 0;
+    private int numberOfDep = 0;
 
 
     public Company(String companyName, int foundingYear, Department[] departments) {
@@ -46,34 +46,57 @@ public class Company {
         this.numberOfDep = numberOfDep;
     }
 
-    public void printDep(){
+    public void printDep() {
         for (int i = 0; i < numberOfDep; i++) {
             System.out.println(departments[i]);
         }
     }
-    public void printEmployeesFromDep (Department department){
+
+    public void printEmployeesFromDep(Department department) {
         department.printEmployeeList();
     }
-    public void numberOfEmployeesFromDep(Department department){
+
+    public void numberOfEmployeesFromDep(Department department) {
         System.out.println(department.getNumberOfEmployees());
     }
 
-    public int getNumberOfEmployees(){
-        int count =0;
+    public int getNumberOfEmployees() {
+        int count = 0;
         for (int i = 0; i < departments.length; i++) {
-           count+=departments[i].getEmployees().length;
+            count += departments[i].getEmployees().length;
         }
         return count;
     }
-    public String[] getAllEmployees(){
+
+    public String[] getAllEmployees() {
         String[] allEmployeesNames = new String[getNumberOfEmployees()];
-        int k= 0;
+        int k = 0;
         for (int i = 0; i < departments.length; i++) {
-            for (int j= 0; j< departments[i].getEmployees().length; j++){
-                allEmployeesNames[k]= departments[i].getEmployees()[j].getFullName();
+            for (int j = 0; j < departments[i].getEmployees().length; j++) {
+                allEmployeesNames[k] = departments[i].getEmployees()[j].getFullName();
                 k++;
             }
         }
         return allEmployeesNames;
+    }
+
+    public Employee getEmployeeByName(String name) {
+        for (int i = 0; i < departments.length; i++) {
+            if (departments[i].getEmployeeByName(name) != null) {
+
+                if (name.equals(departments[i].getEmployeeByName(name).getLastName())) {
+
+                    return departments[i].getEmployeeByName(name);
+                }
+
+            }
+
+        }
+        return null;
+    }
+
+    public void printStreetByEmployeeName(String name) {
+        String street = getEmployeeByName(name).getAddressStreet();
+        System.out.println(street);
     }
 }

@@ -49,9 +49,11 @@ public class main {
         company.printDep(); //ex10
         company.printEmployeesFromDep(department2); //ex11
         company.numberOfEmployeesFromDep(department1); //ex12
+        System.out.println(" ");
 
-
+        company.printStreetByEmployeeName("Craciun"); //ex14
     }
+
 
     public static void searchEmployee(String name, Department department) {
         if (department.getEmployeeByName(name) == null) {
